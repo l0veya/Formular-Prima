@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FORMULA PRIMA World Championship</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0c; --bg2:#131418; --panel:#151619; --line:#2a2b30;
+  --text:#f2f2f0; --text-dim:#9a9ba1; --red:#d81e2c; --steel:#8c8f98;
+  --font-d:'Oswald',sans-serif; --font-b:'Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-padding-top:20px}
+body{background:var(--bg);color:var(--text);font-family:var(--font-b);line-height:1.55;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.eyebrow{font-family:var(--font-d);font-size:13px;letter-spacing:.18em;color:var(--red);font-weight:600}
+h2.sec-title{font-family:var(--font-d);font-size:clamp(28px,4vw,46px);font-weight:600;letter-spacing:.01em;margin-top:6px;text-transform:uppercase}
+section{padding:80px 0;border-top:1px solid var(--line)}
+.grid-bg{background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.25}
+
+/* HERO */
+.hero{position:relative;min-height:92vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;border-top:none}
+.hero .grid-bg{position:absolute;inset:0}
+.hero-mono{position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-family:var(--font-d);font-size:clamp(220px,32vw,460px);font-weight:700;color:transparent;-webkit-text-stroke:1px #26272c;line-height:1;user-select:none}
+.hero-inner{position:relative;z-index:2}
+.hero .eyebrow{margin-bottom:18px}
+.hero h1{font-family:var(--font-d);font-size:clamp(48px,9vw,120px);line-height:.94;font-weight:700;text-transform:uppercase}
+.hero h1 span{color:var(--red)}
+.hero p.sub{margin-top:22px;max-width:520px;color:var(--text-dim);font-size:17px}
+.hero-stats{display:flex;gap:40px;margin-top:56px;flex-wrap:wrap}
+.hero-stats div b{display:block;font-family:var(--font-d);font-size:34px;color:var(--red)}
+.hero-stats div span{font-size:12px;letter-spacing:.1em;color:var(--text-dim);text-transform:uppercase}
+.speedline{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--steel),transparent);opacity:.4}
+
+/* CHAMPIONSHIP SYSTEM */
+.champ-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-top:40px;border:1px solid var(--line)}
+.champ-block{background:var(--panel);padding:34px}
+.champ-block .tag{font-family:var(--font-d);font-size:12px;letter-spacing:.14em;color:var(--red);text-transform:uppercase}
+.champ-block h3{font-family:var(--font-d);font-size:26px;margin:10px 0 14px;text-transform:uppercase}
+.champ-block p{color:var(--text-dim);font-size:15px}
+
+/* POINTS TABLE */
+.points-table{margin-top:40px;border:1px solid var(--line)}
+.p-row{display:grid;grid-template-columns:60px 60px 1fr;align-items:center;padding:10px 18px;border-bottom:1px solid var(--line);gap:14px}
+.p-row:last-child{border-bottom:none}
+.p-row .pos{font-family:var(--font-d);font-size:20px;color:var(--red)}
+.p-row .pts{font-family:var(--font-d);font-size:18px}
+.p-row .bar-wrap{background:#1c1d21;height:8px;position:relative}
+.p-row .bar{background:var(--red);height:100%}
+
+/* CALENDAR - desktop timeline */
+.timeline-scroll{overflow-x:auto;padding:60px 0 20px;margin-top:10px}
+.timeline{display:flex;align-items:flex-start;min-width:max-content;padding:0 10px}
+.tl-node{width:210px;flex:0 0 auto;position:relative;padding-top:26px;text-align:left}
+.tl-node .dot{position:absolute;top:0;left:0;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--red)}
+.tl-node .connector{position:absolute;top:6px;left:14px;width:196px;height:2px;background:var(--line)}
+.tl-node:last-child .connector{display:none}
+.tl-node .num{font-family:var(--font-d);font-size:12px;color:var(--text-dim);letter-spacing:.1em}
+.tl-node .rname{font-family:var(--font-d);font-size:19px;text-transform:uppercase;margin:4px 0 6px;line-height:1.15}
+.tl-node .circuit{font-size:12px;color:var(--steel)}
+.tl-node .meta{font-size:12px;color:var(--text-dim);margin-top:4px}
+.summer-break{flex:0 0 auto;width:150px;display:flex;align-items:center;justify-content:center;padding-top:26px}
+.summer-break span{font-family:var(--font-d);font-size:12px;letter-spacing:.16em;color:var(--red);border-top:1px dashed var(--red);border-bottom:1px dashed var(--red);padding:8px 4px;white-space:nowrap}
+.tl-node-v{display:none}
+
+/* TEAMS */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.team{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--tc);padding:22px;transition:transform .15s ease,border-color .15s ease}
+.team:hover{transform:translateY(-3px)}
+.team-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
+.team-name{font-family:var(--font-d);font-size:22px;text-transform:uppercase}
+.team-flag{font-size:20px}
+.team-hq{font-size:12px;color:var(--text-dim);margin-bottom:14px}
+.team-hq b{color:var(--tc)}
+.drivers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.driver{position:relative;border:1px solid var(--line)}
+.driver .ph{aspect-ratio:3/4;background:linear-gradient(160deg,#1c1d21,#0c0d0f);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.driver .ph::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 30%,rgba(255,255,255,.05),transparent 60%)}
+.driver .ph .init{font-family:var(--font-d);font-size:34px;color:#3a3b40}
+.driver .num{position:absolute;top:6px;left:6px;background:rgba(0,0,0,.65);color:var(--tc);font-family:var(--font-d);font-size:14px;padding:2px 6px;border:1px solid var(--tc)}
+.driver .dname{font-size:12px;padding:8px 8px 2px;font-weight:600}
+.driver .dnat{font-size:11px;color:var(--text-dim);padding:0 8px 8px}
+.team-detail{font-size:12px;color:var(--text-dim)}
+.team-detail p{margin-bottom:5px}
+.team-detail b{color:var(--text)}
+
+/* RIVALRIES */
+.riv-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+.riv{background:var(--panel);border:1px solid var(--line);padding:26px;text-align:center}
+.riv .matchup{display:flex;align-items:center;justify-content:center;gap:16px;font-family:var(--font-d);font-size:18px;text-transform:uppercase;flex-wrap:wrap}
+.riv .matchup span.a{color:var(--red)}
+.riv .vs{font-size:12px;color:var(--text-dim);border:1px solid var(--line);padding:3px 8px}
+.riv p{margin-top:12px;font-size:13px;color:var(--text-dim)}
+
+/* REGULATIONS */
+.reg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-top:40px;border:1px solid var(--line)}
+.reg{background:var(--panel);padding:22px}
+.reg .rtag{font-family:var(--font-d);font-size:13px;letter-spacing:.12em;color:var(--red);text-transform:uppercase;margin-bottom:10px}
+.reg ul{list-style:none;font-size:13px;color:var(--text-dim)}
+.reg li{padding:5px 0;border-top:1px solid var(--line)}
+.reg li:first-child{border-top:none}
+
+footer{padding:50px 0;border-top:1px solid var(--line);color:var(--text-dim);font-size:12px;text-align:center}
+footer b{color:var(--text);font-family:var(--font-d);letter-spacing:.08em}
+
+@media(max-width:900px){
+  .champ-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr}
+  .reg-grid{grid-template-columns:1fr 1fr}
+  .timeline-scroll{display:none}
+  .tl-node-v{display:block}
+  .hero-mono{display:none}
+}
+@media(max-width:520px){
+  .reg-grid{grid-template-columns:1fr}
+  section{padding:56px 0}
+  .hero{min-height:80vh}
+}
+.v-timeline{margin-top:40px;position:relative;padding-left:24px;display:none}
+@media(max-width:900px){.v-timeline{display:block}}
+.v-line{position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.v-node{position:relative;padding-bottom:30px}
+.v-node .dot{position:absolute;left:-24px;top:2px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--red)}
+.v-node .num{font-family:var(--font-d);font-size:11px;color:var(--text-dim);letter-spacing:.1em}
+.v-node .rname{font-family:var(--font-d);font-size:18px;text-transform:uppercase;margin:2px 0 4px}
+.v-node .circuit{font-size:12px;color:var(--steel)}
+.v-node .meta{font-size:12px;color:var(--text-dim);margin-top:2px}
+.v-break{padding:10px 0 26px;color:var(--red);font-family:var(--font-d);font-size:12px;letter-spacing:.16em}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="grid-bg"></div>
+  <div class="hero-mono">FP</div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow">PRIMA MOTORSPORT FEDERATION · EST. 1928</div>
+    <h1>FORMULA<br><span>PRIMA</span></h1>
+    <p class="sub">세계 최고 수준의 드라이버와 엔지니어들이 겨루는 국제 모터스포츠 월드 챔피언십. 매년 3월부터 12월까지, 12개 팀과 24명의 드라이버가 22개 라운드에서 속도와 정밀함을 증명합니다.</p>
+    <div class="hero-stats">
+      <div><b>1928</b><span>창설</span></div>
+      <div><b>12</b><span>참가 팀</span></div>
+      <div><b>24</b><span>드라이버</span></div>
+      <div><b>22</b><span>라운드</span></div>
+    </div>
+  </div>
+  <div class="speedline" style="bottom:14%"></div>
+</header>
+
+<section id="system">
+  <div class="wrap">
+    <div class="eyebrow">01 / CHAMPIONSHIP</div>
+    <h2 class="sec-title">Championship System</h2>
+    <div class="champ-grid">
+      <div class="champ-block">
+        <div class="tag">Drivers'</div>
+        <h3>Drivers' Championship</h3>
+        <p>각 드라이버는 시즌 전 그랑프리에서 획득한 포인트를 합산하여 순위를 겨룹니다. 22개 라운드가 끝난 뒤 가장 많은 포인트를 획득한 드라이버가 챔피언이 됩니다.</p>
+      </div>
+      <div class="champ-block">
+        <div class="tag">Constructors'</div>
+        <h3>Constructors' Championship</h3>
+        <p>한 팀 소속 두 드라이버가 획득한 포인트의 합계가 그 팀의 컨스트럭터스 포인트가 됩니다. 팀의 엔지니어링과 전략이 종합적으로 평가됩니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="points">
+  <div class="wrap">
+    <div class="eyebrow">02 / POINTS SYSTEM</div>
+    <h2 class="sec-title">Points System</h2>
+    <div class="points-table" id="points-table"></div>
+  </div>
+</section>
+
+<section id="calendar">
+  <div class="wrap">
+    <div class="eyebrow">03 / RACE CALENDAR</div>
+    <h2 class="sec-title">Formula Prima Round Calendar</h2>
+    <div class="timeline-scroll">
+      <div class="timeline" id="timeline"></div>
+    </div>
+    <div class="v-timeline" id="v-timeline"><div class="v-line"></div></div>
+  </div>
+</section>
+
+<section id="teams">
+  <div class="wrap">
+    <div class="eyebrow">04 / TEAMS &amp; DRIVERS</div>
+    <h2 class="sec-title">Teams &amp; Drivers</h2>
+    <div class="team-grid" id="team-grid"></div>
+  </div>
+</section>
+
+<section id="rivalries">
+  <div class="wrap">
+    <div class="eyebrow">05 / RIVALRIES</div>
+    <h2 class="sec-title">Major Rivalries</h2>
+    <div class="riv-grid">
+      <div class="riv"><div class="matchup"><span class="a">Scuderia Bellarosa</span><span class="vs">VS</span><span>Kronwerk</span></div><p>수십 년간 이어진 유럽 명문팀 간의 오랜 라이벌 구도.</p></div>
+      <div class="riv"><div class="matchup"><span class="a">Bellarosa</span><span class="vs">VS</span><span>Vespera</span></div><p>전통 명문과 막대한 자본을 앞세운 신흥 강자의 경쟁.</p></div>
+      <div class="riv"><div class="matchup"><span class="a">Asterion</span><span class="vs">VS</span><span>Ravenhall</span></div><p>같은 영국을 연고로 한 팀 간의 자존심 대결.</p></div>
+      <div class="riv"><div class="matchup"><span class="a">Kōryū</span><span class="vs">VS</span><span>Han Motors</span></div><p>아시아권 기술력을 둘러싼 팽팽한 경쟁 구도.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="regulations">
+  <div class="wrap">
+    <div class="eyebrow">06 / REGULATIONS</div>
+    <h2 class="sec-title">Sporting Regulations</h2>
+    <div class="reg-grid">
+      <div class="reg"><div class="rtag">Penalties</div><ul><li>5초 페널티</li><li>10초 페널티</li><li>드라이브 스루</li><li>그리드 페널티</li></ul></div>
+      <div class="reg"><div class="rtag">Race Control</div><ul><li>Safety Car</li><li>Virtual Safety Car</li></ul></div>
+      <div class="reg"><div class="rtag">Incidents</div><ul><li>트랙 리미트 위반</li><li>위험한 주행</li><li>충돌 유발</li></ul></div>
+      <div class="reg"><div class="rtag">DNF</div><ul><li>기계적 고장</li><li>사고</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <b>FORMULA PRIMA</b> WORLD CHAMPIONSHIP<br>Governed by Prima Motorsport Federation (PMF) · Est. 1928
+</footer>
+
+<script>
+const points=[[1,25],[2,18],[3,15],[4,12],[5,10],[6,8],[7,6],[8,4],[9,2],[10,1]];
+const pt=document.getElementById('points-table');
+const max=25;
+points.forEach(([pos,pts])=>{
+  const row=document.createElement('div');row.className='p-row';
+  row.innerHTML=`<div class="pos">${String(pos).padStart(2,'0')}</div><div class="pts">${pts}P</div><div class="bar-wrap"><div class="bar" style="width:${(pts/max*100)}%"></div></div>`;
+  pt.appendChild(row);
+});
+
+const rounds=[
+["01","호주 라운드","멜버른 렉사이드 서킷","멜버른 · 3월 6–8일"],
+["02","중국 라운드","지아딩 서킷","상하이 · 3월 20–22일"],
+["03","일본 라운드","미에 서킷","스즈카 · 4월 3–5일"],
+["04","캐나다 라운드","세인트로렌스 아일랜드 서킷","몬트리올 · 4월 17–19일"],
+["05","미국(LA) 라운드","LA 퍼시픽 스피드웨이","로스앤젤레스 · 5월 1–3일"],
+["06","모나코 라운드","모나코 하버 스트리트 서킷","모나코 · 5월 15–17일"],
+["07","스페인 라운드","바르셀로나 인터내셔널 서킷","바르셀로나 · 5월 29–31일"],
+["08","이탈리아 라운드","롬바르디아 서킷","밀라노 · 6월 12–14일"],
+["09","오스트리아 라운드","슈필베르크 알펜 서킷","슈필베르크 · 6월 26–28일"],
+["10","독일 라운드","라인-네카어 서킷","만하임 · 7월 3–5일"],
+["11","벨기에 라운드","아르덴 포레스트 서킷","스파 · 7월 10–12일"],
+["12","영국 라운드","노샘프턴셔 서킷","실버스톤 · 7월 24–26일"],
+"BREAK",
+["13","헝가리 라운드","모조로드 레이스 서킷","모조로드 · 8월 21–23일"],
+["14","네덜란드 라운드","노스 시 코스트 서킷","잔드보르트 · 9월 4–6일"],
+["15","핀란드 라운드","패이얘트해메 서킷","라흐티 · 9월 18–20일"],
+["16","대한민국 라운드","인천-서울 서킷","인천 · 10월 2–4일"],
+["17","싱가포르 라운드","싱가포르 마리나 서킷","싱가포르 · 10월 16–18일"],
+["18","인도네시아 라운드","자바 하이랜드 서킷","반둥 · 10월 30일–11월 1일"],
+["19","미국(오스틴) 라운드","론스타 서킷","오스틴 · 11월 6–8일"],
+["20","멕시코 라운드","아즈테카 서킷","멕시코시티 · 11월 20–22일"],
+["21","브라질 라운드","상파울루 그린벨트 서킷","상파울루 · 12월 4–6일"],
+["22","카타르 라운드","도하 데저트 서킷","도하 · 12월 11–13일"]
+];
+
+const tl=document.getElementById('timeline');
+const vtl=document.getElementById('v-timeline');
+rounds.forEach(r=>{
+  if(r==="BREAK"){
+    const sb=document.createElement('div');sb.className='summer-break';sb.innerHTML='<span>SUMMER BREAK</span>';tl.appendChild(sb);
+    const vb=document.createElement('div');vb.className='v-break';vb.textContent='──── SUMMER BREAK ────';vtl.appendChild(vb);
+    return;
+  }
+  const [num,name,circuit,meta]=r;
+  const node=document.createElement('div');node.className='tl-node';
+  node.innerHTML=`<div class="dot"></div><div class="connector"></div><div class="num">ROUND ${num}</div><div class="rname">${name}</div><div class="circuit">${circuit}</div><div class="meta">${meta}</div>`;
+  tl.appendChild(node);
+  const vnode=document.createElement('div');vnode.className='v-node';
+  vnode.innerHTML=`<div class="dot"></div><div class="num">ROUND ${num}</div><div class="rname">${name}</div><div class="circuit">${circuit}</div><div class="meta">${meta}</div>`;
+  vtl.appendChild(vnode);
+});
+
+const teams=[
+{name:"Scuderia Bellarosa<br>(스쿠데리아 벨라로사)",flag:"🇮🇹",country:"이탈리아",hq:"모데나, 이탈리아",color:"#B3122D",motto:"Vincere Sempre",char:"전통과 명예를 중시하는 유서 깊은 명문팀.",phil:"극한의 퍼포먼스와 공격적인 전략.",
+ drivers:[{name:"마테오 벨리니",num:7,nat:"🇮🇹 이탈리아 / 🇦🇷 아르헨티나",age:29,init:"MB"},{name:"엘리아스 쾨니히",num:22,nat:"🇩🇪 독일 / 🇦🇹 오스트리아",age:24,init:"EK"}]},
+{name:"Kronwerk<br>(크론베르크)",flag:"🇩🇪",country:"독일",hq:"슈투트가르트, 독일",color:"#5A5F68",motto:"Beyond Limits",char:"완벽주의와 기술력을 중시하는 독일계 강팀.",phil:"정밀한 엔지니어링과 안정적인 레이스 운영.",
+ drivers:[{name:"루카스 바이스",num:1,nat:"🇩🇪 독일",age:31,init:"LW"},{name:"아드리앙 모로",num:14,nat:"🇫🇷 프랑스",age:26,init:"AM"}]},
+{name:"Vespera<br>(베스페라)",flag:"🇲🇨",country:"모나코",hq:"몬테카를로, 모나코",color:"#3B5BA8",motto:"Elegance Under Pressure",char:"화려한 이미지와 막대한 자본을 가진 신흥 명문.",phil:"속도와 이미지 모두를 지배한다.",
+ drivers:[{name:"줄리앙 로랑",num:11,nat:"🇫🇷 프랑스",age:27,init:"JL"},{name:"니코 하르트만",num:28,nat:"🇨🇭 스위스",age:22,init:"NH"}]},
+{name:"Asterion<br>(아스테리온)",flag:"🇬🇧",country:"영국",hq:"옥스퍼드셔, 영국",color:"#173F8A",motto:"Always Forward",char:"젊고 공격적인 신세대 팀.",phil:"실패를 감수한 과감한 개발.",
+ drivers:[{name:"올리버 그랜트",num:4,nat:"🇬🇧 영국(북아일랜드)",age:23,init:"OG"},{name:"라파엘 코스타",num:19,nat:"🇵🇹 포르투갈 / 🇧🇷 브라질",age:25,init:"RC"}]},
+{name:"Meridian<br>(메리디언)",flag:"🇺🇸",country:"미국",hq:"샬럿, 미국",color:"#4A6FA5",motto:"Reach the Impossible",char:"거대한 자본과 미국식 기업 문화를 가진 팀.",phil:"데이터와 전략을 통한 효율적인 승리.",
+ drivers:[{name:"잭슨 리드",num:6,nat:"🇺🇸 미국 / 🇨🇦 캐나다",age:28,init:"JR"},{name:"쇠렌 린드스트림",num:31,nat:"🇸🇪 스웨덴 / 🇫🇮 핀란드 / 🇺🇸 미국",age:21,init:"SL"}]},
+{name:"Kōryū<br>(코류)",flag:"🇯🇵",country:"일본",hq:"스즈카, 일본",color:"#D94A38",motto:"Precision in Motion",char:"작지만 강한 기술 중심 팀.",phil:"가벼운 차체와 섬세한 셋업.",
+ drivers:[{name:"타카하시 렌",num:16,nat:"🇯🇵 일본",age:25,init:"TR"},{name:"김진령",num:33,nat:"🇰🇷 대한민국 / 🇨🇦 캐나다",age:22,init:"KJ"}]},
+{name:"Han Motors<br>(한 모터스)",flag:"🇰🇷",country:"대한민국",hq:"용인, 대한민국",color:"#123C8C",motto:"Rise Beyond",char:"비교적 젊은 아시아계 팀. 한국 모터스포츠 기술 기반 성장.",phil:"끊임없는 개발과 빠른 적응.",
+ drivers:[{name:"강지훈",num:9,nat:"🇰🇷 대한민국",age:26,init:"KJ"},{name:"마르코 실바",num:27,nat:"🇧🇷 브라질",age:24,init:"MS"}]},
+{name:"Veltrano<br>(벨트라노)",flag:"🇪🇸",country:"스페인",hq:"바르셀로나, 스페인",color:"#F5C542",motto:"Burn Brighter",char:"감정적이고 공격적인 남유럽계 팀.",phil:"과감한 추월과 높은 코너링 속도.",
+ drivers:[{name:"알레한드로 루이스",num:18,nat:"🇪🇸 스페인",age:30,init:"AR"},{name:"루카 페라로",num:42,nat:"🇮🇹 이탈리아",age:21,init:"LF"}]},
+{name:"Vintera<br>(빈테라)",flag:"🇳🇱",country:"네덜란드",hq:"암스테르담, 네덜란드",color:"#8ED6E8",motto:"Cold Mind, Fast Heart",char:"냉정하고 실용적인 중견팀.",phil:"타이어 관리와 장기적인 레이스 페이스.",
+ drivers:[{name:"단 베르메르",num:12,nat:"🇳🇱 네덜란드",age:27,init:"DV"},{name:"에릭 노바크",num:45,nat:"🇨🇿 체코",age:23,init:"EN"}]},
+{name:"Ravenhall<br>(레이븐홀)",flag:"🇬🇧",country:"영국",hq:"노샘프턴셔, 영국",color:"#8C8F98",motto:"Earn Your Place",char:"거칠고 경쟁적인 사설 레이싱팀.",phil:"빠른 차보다 강한 드라이버를 만든다.",
+ drivers:[{name:"칼럼 헤이즈",num:3,nat:"🇬🇧 영국(잉글랜드)",age:28,init:"CH"},{name:"빅터 페트로프",num:55,nat:"🇧🇬 불가리아",age:25,init:"VP"}]},
+{name:"Delacroix<br>(들라크루아)",flag:"🇫🇷",country:"프랑스",hq:"르망, 프랑스",color:"#244C9B",motto:"Toujours Plus Vite",char:"우아함과 기술을 결합한 전통적인 프랑스 팀.",phil:"균형 잡힌 차량과 정교한 전략.",
+ drivers:[{name:"에티엔 모렐",num:21,nat:"🇫🇷 프랑스",age:32,init:"EM"},{name:"아미르 하다드",num:37,nat:"🇱🇧 레바논",age:20,init:"AH"}]},
+{name:"Northstar<br>(노스스타)",flag:"🇨🇦",country:"캐나다",hq:"몬트리올, 캐나다",color:"#1F6B57",motto:"Silent. Swift. Relentless.",char:"조용하지만 끈질긴 언더독 팀.",phil:"약점을 최소화하고 기회를 놓치지 않는다.",
+ drivers:[{name:"이든 밀러",num:8,nat:"🇨🇦 캐나다",age:26,init:"EM"},{name:"토마스 오르테가",num:77,nat:"🇲🇽 멕시코",age:22,init:"TO"}]}
+];
+
+const tg=document.getElementById('team-grid');
+teams.forEach(t=>{
+  const el=document.createElement('div');el.className='team';el.style.setProperty('--tc',t.color);
+  const driversHtml=t.drivers.map(d=>`
+    <div class="driver">
+      <div class="ph"><span class="init">${d.init}</span><span class="num">${d.num}</span></div>
+      <div class="dname">${d.name} (${d.age})</div>
+      <div class="dnat">${d.nat}</div>
+    </div>`).join('');
+  el.innerHTML=`
+    <div class="team-head"><div class="team-name">${t.name}</div><div class="team-flag">${t.flag}</div></div>
+    <div class="team-hq">본부 <b>${t.hq}</b></div>
+    <div class="drivers">${driversHtml}</div>
+    <div class="team-detail">
+      <p><b>모토</b> — ${t.motto}</p>
+      <p><b>팀 성격</b> — ${t.char}</p>
+      <p><b>레이싱 철학</b> — ${t.phil}</p>
+    </div>`;
+  tg.appendChild(el);
+});
+</script>
+</body>
+</html>
