@@ -138,6 +138,8 @@ footer b{color:var(--text);font-family:var(--font-d);letter-spacing:.08em}
 .trait-list li{padding:6px 0;border-top:1px solid var(--line);padding-left:14px;position:relative}
 .trait-list li:first-child{border-top:none}
 .trait-list li::before{content:"—";position:absolute;left:0;color:var(--mc,var(--red))}
+.lastyear{font-size:13px;color:var(--text);background:#1c1d21;border:1px solid var(--line);padding:8px 12px;display:inline-block}
+.lastyear.rookie{color:var(--mc,var(--red));border-color:var(--mc,var(--red))}
 
 @media(max-width:900px){
   .champ-grid{grid-template-columns:1fr}
@@ -328,109 +330,109 @@ rounds.forEach(r=>{
 const teams=[
 {name:"Scuderia Bellarosa<br>(스쿠데리아 벨라로사)",flag:"🇮🇹",country:"이탈리아",hq:"모데나, 이탈리아",color:"#B3122D",motto:"Vincere Sempre",char:"전통과 명예를 중시하는 유서 깊은 명문팀.",phil:"극한의 퍼포먼스와 공격적인 전략.",
  drivers:[
-   {name:"마테오 벨리니",num:7,nat:"🇮🇹 이탈리아 / 🇦🇷 아르헨티나",orig:"Matteo Bellini",age:29,code:"BEL",height:181,init:"MB",
+   {name:"마테오 벨리니",num:7,nat:"🇮🇹 이탈리아 / 🇦🇷 아르헨티나",orig:"Matteo Bellini",age:29,code:"BEL",lastYear:"종합 2위 · 312pt",height:181,init:"MB",
      personality:["열정적인","자신만만한","카리스마 있는","승부욕 강한","의리 있는"],
      traits:["공격적인 추월 시도로 유명함","타이어 관리보다 순간 페이스를 우선시함","압박 속에서도 흔들리지 않는 멘탈"]},
-   {name:"엘리아스 쾨니히",num:22,nat:"🇩🇪 독일 / 🇦🇹 오스트리아",orig:"Elias König",age:24,code:"KON",height:179,init:"EK",
+   {name:"엘리아스 쾨니히",num:22,nat:"🇩🇪 독일 / 🇦🇹 오스트리아",orig:"Elias König",age:24,code:"KON",lastYear:"종합 6위 · 201pt",height:179,init:"EK",
      personality:["침착한","분석적인","신중한","야심찬","겸손한"],
      traits:["정교한 코너링과 라인 선택","데이터 기반의 세팅 조율을 선호함","일관되게 안정적인 페이스 유지"]}
  ]},
 {name:"Kronwerk<br>(크론베르크)",flag:"🇩🇪",country:"독일",hq:"슈투트가르트, 독일",color:"#5A5F68",motto:"Beyond Limits",char:"완벽주의와 기술력을 중시하는 독일계 강팀.",phil:"정밀한 엔지니어링과 안정적인 레이스 운영.",
  drivers:[
-   {name:"루카스 바이스",num:1,nat:"🇩🇪 독일",orig:"Lukas Weiß",age:31,code:"WEZ",height:184,init:"LW",
+   {name:"루카스 바이스",num:1,nat:"🇩🇪 독일",orig:"Lukas Weiß",age:31,code:"WEZ",lastYear:"종합 1위 · 338pt (드라이버스 챔피언)",height:184,init:"LW",
      personality:["완벽주의적인","냉철한","절제된","책임감 강한","과묵한"],
      traits:["시즌 내내 일관된 랩타임을 유지함","최상급 타이어 관리 능력","실수 없는 클린한 레이스 운영"]},
-   {name:"아드리앙 모로",num:14,nat:"🇫🇷 프랑스",orig:"Adrien Moreau",age:26,code:"MOR",height:178,init:"AM",
+   {name:"아드리앙 모로",num:14,nat:"🇫🇷 프랑스",orig:"Adrien Moreau",age:26,code:"MOR",lastYear:"종합 9위 · 142pt",height:178,init:"AM",
      personality:["세심한","협조적인","전략적인","침착한","친화적인"],
      traits:["팀 전략을 충실히 따르는 스타일","우천 컨디션에서 강한 모습","안정적인 스타트 포지션 확보"]}
  ]},
 {name:"Vespera<br>(베스페라)",flag:"🇲🇨",country:"모나코",hq:"몬테카를로, 모나코",color:"#3B5BA8",motto:"Elegance Under Pressure",char:"화려한 이미지와 막대한 자본을 가진 신흥 명문.",phil:"속도와 이미지 모두를 지배한다.",
  drivers:[
-   {name:"줄리앙 로랑",num:11,nat:"🇫🇷 프랑스 / 🇱🇮 리히텐슈타인",orig:"Julien Laurent",age:27,code:"LAU",height:183,init:"JL",
+   {name:"줄리앙 로랑",num:11,nat:"🇫🇷 프랑스 / 🇱🇮 리히텐슈타인",orig:"Julien Laurent",age:27,code:"LAU",lastYear:"종합 4위 · 256pt",height:183,init:"JL",
      personality:["우아한","자신감 넘치는","사교적인","승부욕 강한","완벽주의적인"],
      traits:["화려한 추월 감각으로 유명함","프레셔 상황에서도 침착함 유지","퀄리파잉 세션에 특히 강함"]},
-   {name:"니코 하르트만",num:28,nat:"🇨🇭 스위스",orig:"Nico Hartmann",age:22,code:"HAR",height:177,init:"NH",
+   {name:"니코 하르트만",num:28,nat:"🇨🇭 스위스",orig:"Nico Hartmann",age:22,code:"HAR",lastYear:null,height:177,init:"NH",
      personality:["대담한","패기 넘치는","낙천적인","적응력 좋은","솔직한"],
      traits:["공격적인 스타트로 순위를 끌어올림","빠른 학습 속도로 성장 중","모험적인 오버테이크 시도"]}
  ]},
 {name:"Asterion<br>(아스테리온)",flag:"🇬🇧",country:"영국",hq:"옥스퍼드셔, 영국",color:"#173F8A",motto:"Always Forward",char:"젊고 공격적인 신세대 팀.",phil:"실패를 감수한 과감한 개발.",
  drivers:[
-   {name:"올리버 그랜트",num:4,nat:"🇬🇧 영국(북아일랜드)",orig:"Oliver Grant",age:23,code:"GRA",height:185,init:"OG",
+   {name:"올리버 그랜트",num:4,nat:"🇬🇧 영국(북아일랜드)",orig:"Oliver Grant",age:23,code:"GRA",lastYear:"종합 11위 · 98pt",height:185,init:"OG",
      personality:["저돌적인","열정적인","고집 있는","직설적인","승부욕 강한"],
      traits:["과감한 인사이드 라인 선점","리스크를 감수한 추월 시도","예측하기 어려운 레이스 운영"]},
-   {name:"라파엘 코스타",num:19,nat:"🇵🇹 포르투갈 / 🇧🇷 브라질",orig:"Rafael Costa",age:25,code:"CST",height:180,init:"RC",
+   {name:"라파엘 코스타",num:19,nat:"🇵🇹 포르투갈 / 🇧🇷 브라질",orig:"Rafael Costa",age:25,code:"CST",lastYear:"종합 13위 · 77pt",height:180,init:"RC",
      personality:["유쾌한","유연한","창의적인","사교적인","근성 있는"],
      traits:["변화무쌍한 날씨 컨디션에 강함","타이어 온도 관리에 능숙함","레이스 후반 추격전에 특기가 있음"]}
  ]},
 {name:"Meridian<br>(메리디언)",flag:"🇺🇸",country:"미국",hq:"샬럿, 미국",color:"#4A6FA5",motto:"Reach the Impossible",char:"거대한 자본과 미국식 기업 문화를 가진 팀.",phil:"데이터와 전략을 통한 효율적인 승리.",
  drivers:[
-   {name:"잭슨 리드",num:6,nat:"🇺🇸 미국 / 🇨🇦 캐나다",orig:"Jackson Reed",age:28,code:"RED",height:186,init:"JR",
+   {name:"잭슨 리드",num:6,nat:"🇺🇸 미국",orig:"Jackson Reed",age:28,code:"RED",lastYear:"종합 7위 · 188pt",height:186,init:"JR",
      personality:["체계적인","논리적인","침착한","프로페셔널한","신중한"],
      traits:["데이터 분석에 기반한 주행 스타일","연료 세이브 운영에 능숙함","안정적으로 포인트를 수집함"]},
-   {name:"쇠렌 린드스트림",num:31,nat:"🇸🇪 스웨덴 / 🇫🇮 핀란드 / 🇺🇸 미국",orig:"Sören Lindström",age:21,code:"LIN",height:190,init:"SL",
+   {name:"쇠렌 린드스트림",num:31,nat:"🇸🇪 스웨덴 / 🇫🇮 핀란드 / 🇺🇸 미국",orig:"Sören Lindström",age:21,code:"LIN",lastYear:null,height:190,init:"SL",
      personality:["조용한","성실한","관찰력 있는","겸손한","끈기 있는"],
      traits:["매 라운드 꾸준한 성장세를 보임","섬세한 브레이킹 포인트 감각","실수를 줄이는 안정형 드라이빙"]}
  ]},
 {name:"Kōryū<br>(코류)",flag:"🇯🇵",country:"일본",hq:"스즈카, 일본",color:"#D94A38",motto:"Precision in Motion",char:"작지만 강한 기술 중심 팀.",phil:"가벼운 차체와 섬세한 셋업.",
  drivers:[
-   {name:"타카하시 렌",num:16,nat:"🇯🇵 일본",orig:"高橋 蓮（たかはし れん）",age:25,code:"REN",height:174,init:"TR",
+   {name:"타카하시 렌",num:16,nat:"🇯🇵 일본",orig:"高橋 蓮（たかはし れん）",age:25,code:"REN",lastYear:"종합 8위 · 165pt",height:174,init:"TR",
      personality:["섬세한","정확한","절제된","예의 바른","집중력 있는"],
      traits:["밀리미터 단위의 정밀한 라인 선택","낮은 실수율의 클린한 주행","기술적인 세팅 이해도가 매우 높음"]},
-   {name:"김진령",num:33,nat:"🇰🇷 대한민국",age:22,code:"KIM",height:176,init:"KJ",
+   {name:"김진령",num:33,nat:"🇰🇷 대한민국",age:22,code:"KIM",lastYear:"종합 15위 · 54pt",height:176,init:"KJ",
      personality:["도전적인","명랑한","유연한","승부욕 강한","사교적인"],
      traits:["빠른 반응속도로 접전에 강함","순위 다툼 배틀에서 두각을 나타냄","예선 스퍼트 구간이 특기"]}
  ]},
 {name:"Han Motors<br>(한 모터스)",flag:"🇰🇷",country:"대한민국",hq:"용인, 대한민국",color:"#123C8C",motto:"Rise Beyond",char:"비교적 젊은 아시아계 팀. 한국 모터스포츠 기술 기반 성장.",phil:"끊임없는 개발과 빠른 적응.",
  drivers:[
-   {name:"강지훈",num:9,nat:"🇰🇷 대한민국",age:26,code:"KAN",height:178,init:"KJ",
+   {name:"강지훈",num:9,nat:"🇰🇷 대한민국",age:26,code:"KAN",lastYear:"종합 16위 · 48pt",height:178,init:"KJ",
      personality:["근성 있는","끈기 있는","겸손한","성실한","목표 지향적인"],
      traits:["꾸준한 실력 발전 곡선을 보임","홈 그랑프리에서 강한 동기부여","압박 속에서도 흐트러지지 않는 집중력"]},
-   {name:"마르코 실바",num:27,nat:"🇧🇷 브라질",orig:"Marco Silva",age:24,code:"SIL",height:182,init:"MS",
+   {name:"마르코 실바",num:27,nat:"🇧🇷 브라질",orig:"Marco Silva",age:24,code:"SIL",lastYear:"종합 12위 · 85pt",height:182,init:"MS",
      personality:["열정적인","즉흥적인","대담한","친화적인","승부욕 강한"],
      traits:["본능적인 추월 감각이 뛰어남","빗길 주행에서 특히 강함","과감한 피트 타이밍 전략을 즐겨 씀"]}
  ]},
 {name:"Veltrano<br>(벨트라노)",flag:"🇪🇸",country:"스페인",hq:"바르셀로나, 스페인",color:"#F5C542",motto:"Burn Brighter",char:"감정적이고 공격적인 남유럽계 팀.",phil:"과감한 추월과 높은 코너링 속도.",
  drivers:[
-   {name:"알레한드로 루이스",num:18,nat:"🇪🇸 스페인",orig:"Alejandro Ruiz",age:30,code:"RUZ",height:179,init:"AR",
+   {name:"알레한드로 루이스",num:18,nat:"🇪🇸 스페인",orig:"Alejandro Ruiz",age:30,code:"RUZ",lastYear:"종합 5위 · 214pt",height:179,init:"AR",
      personality:["정열적인","다혈질의","자신감 넘치는","승부욕 강한","솔직한"],
      traits:["과감한 코너 진입 타이밍","높은 코너링 속도를 유지함","휠투휠 배틀에서 물러서지 않는 스타일"]},
-   {name:"루카 페라로",num:42,nat:"🇮🇹 이탈리아",orig:"Luca Ferraro",age:21,code:"FER",height:183,init:"LF",
+   {name:"루카 페라로",num:42,nat:"🇮🇹 이탈리아",orig:"Luca Ferraro",age:21,code:"FER",lastYear:null,height:183,init:"LF",
      personality:["활기찬","도전적인","감정적인","성장 지향적인","솔직한"],
      traits:["공격적인 추월 시도를 자주 감행함","빠른 적응력으로 신인답지 않은 페이스","경기마다 기복이 있는 퍼포먼스"]}
  ]},
 {name:"Vintera<br>(빈테라)",flag:"🇳🇱",country:"네덜란드",hq:"암스테르담, 네덜란드",color:"#8ED6E8",motto:"Cold Mind, Fast Heart",char:"냉정하고 실용적인 중견팀.",phil:"타이어 관리와 장기적인 레이스 페이스.",
  drivers:[
-   {name:"단 베르메르",num:12,nat:"🇳🇱 네덜란드 / 🇱🇺 룩셈부르크",orig:"Daan Vermeer",age:27,code:"VER",height:188,init:"DV",
+   {name:"단 베르메르",num:12,nat:"🇳🇱 네덜란드 / 🇱🇺 룩셈부르크",orig:"Daan Vermeer",age:27,code:"VER",lastYear:"종합 10위 · 121pt",height:188,init:"DV",
      personality:["냉정한","실용적인","차분한","계산적인","인내심 있는"],
      traits:["뛰어난 타이어 관리 능력","장거리 레이스 페이스 유지에 강함","리스크를 최소화하는 전략 운영"]},
-   {name:"에릭 노바크",num:45,nat:"🇨🇿 체코",orig:"Erik Novák",age:23,code:"NOV",height:181,init:"EN",
+   {name:"에릭 노바크",num:45,nat:"🇨🇿 체코",orig:"Erik Novák",age:23,code:"NOV",lastYear:"종합 14위 · 66pt",height:181,init:"EN",
      personality:["신중한","꾸준한","분석적인","조용한","협조적인"],
      traits:["안정적인 레이스 운영을 보여줌","연료·타이어 효율 관리에 능숙함","팀 전략에 순응적인 스타일"]}
  ]},
 {name:"Ravenhall<br>(레이븐홀)",flag:"🇬🇧",country:"영국",hq:"노샘프턴셔, 영국",color:"#8C8F98",motto:"Earn Your Place",char:"거칠고 경쟁적인 사설 레이싱팀.",phil:"빠른 차보다 강한 드라이버를 만든다.",
  drivers:[
-   {name:"칼럼 헤이즈",num:3,nat:"🇬🇧 영국(잉글랜드)",orig:"Callum Hayes",age:28,code:"HAY",height:187,init:"CH",
+   {name:"칼럼 헤이즈",num:3,nat:"🇬🇧 영국(잉글랜드)",orig:"Callum Hayes",age:28,code:"HAY",lastYear:"종합 3위 · 289pt",height:187,init:"CH",
      personality:["거친","투지 넘치는","직설적인","강인한","자립적인"],
      traits:["몸싸움이 강한 휠투휠 배틀 스타일","포지션 사수에 능숙함","압박 속에서도 물러서지 않음"]},
-   {name:"빅터 페트로프",num:55,nat:"🇧🇬 불가리아",orig:"Виктор Петров",age:25,code:"PTR",height:184,init:"VP",
+   {name:"빅터 페트로프",num:55,nat:"🇧🇬 불가리아",orig:"Виктор Петров",age:25,code:"PTR",lastYear:"종합 17위 · 39pt",height:184,init:"VP",
      personality:["대담한","근성 있는","무뚝뚝한","승부욕 강한","인내심 있는"],
      traits:["거친 배틀에도 굴하지 않는 스타일","레이스 후반 스퍼트가 특기임","예측하기 어려운 라인 선택"]}
  ]},
 {name:"Delacroix<br>(들라크루아)",flag:"🇫🇷",country:"프랑스",hq:"르망, 프랑스",color:"#244C9B",motto:"Toujours Plus Vite",char:"우아함과 기술을 결합한 전통적인 프랑스 팀.",phil:"균형 잡힌 차량과 정교한 전략.",
  drivers:[
-   {name:"에티엔 모렐",num:21,nat:"🇫🇷 프랑스",orig:"Étienne Morel",age:32,code:"MRL",height:180,init:"EM",
+   {name:"에티엔 모렐",num:21,nat:"🇫🇷 프랑스",orig:"Étienne Morel",age:32,code:"MRL",lastYear:"종합 18위 · 33pt",height:180,init:"EM",
      personality:["노련한","우아한","침착한","전략적인","신사적인"],
      traits:["정교한 레이스 매니지먼트 능력","공격과 수비의 균형 잡힌 드라이빙","위기 상황 대응 능력이 뛰어남"]},
-   {name:"아미르 하다드",num:37,nat:"🇱🇧 레바논",orig:"أمير حداد",age:20,code:"HAD",height:175,init:"AH",
+   {name:"아미르 하다드",num:37,nat:"🇱🇧 레바논",orig:"أمير حداد",age:20,code:"HAD",lastYear:null,height:175,init:"AH",
      personality:["순수한","열정적인","성장 지향적인","겸손한","호기심 많은"],
      traits:["매우 빠른 학습 곡선을 보여줌","저돌적인 시도를 두려워하지 않음","아직 다듬어지는 중인 일관성"]}
  ]},
 {name:"Northstar<br>(노스스타)",flag:"🇨🇦",country:"캐나다",hq:"몬트리올, 캐나다",color:"#1F6B57",motto:"Silent. Swift. Relentless.",char:"조용하지만 끈질긴 언더독 팀.",phil:"약점을 최소화하고 기회를 놓치지 않는다.",
  drivers:[
-   {name:"이든 밀러",num:8,nat:"🇨🇦 캐나다",orig:"Eden Miller",age:26,code:"MLR",height:182,init:"EM",
+   {name:"이든 밀러",num:8,nat:"🇨🇦 캐나다 / 🇺🇸 미국",orig:"Eden Miller",age:26,code:"MLR",lastYear:"종합 19위 · 28pt",height:182,init:"EM",
      personality:["과묵한","끈기 있는","침착한","실속 있는","신뢰감 있는"],
      traits:["기회 포착 능력이 뛰어남","안정적으로 포인트를 획득함","실수가 적은 클린한 레이스 운영"]},
-   {name:"토마스 오르테가",num:77,nat:"🇲🇽 멕시코",orig:"Tomás Ortega",age:22,code:"ORT",height:179,init:"TO",
+   {name:"토마스 오르테가",num:77,nat:"🇲🇽 멕시코",orig:"Tomás Ortega",age:22,code:"ORT",lastYear:"종합 20위 · 22pt",height:179,init:"TO",
      personality:["활기찬","대담한","사교적인","도전적인","낙천적인"],
      traits:["공격적인 오버테이크를 즐겨 시도함","빠른 타이어 워밍업 능력","홈 관중 앞에서 강한 퍼포먼스를 보임"]}
  ]}
@@ -492,6 +494,10 @@ function openDriverModal(num){
     <div class="modal-sec">
       <div class="stag">Racing Traits</div>
       <ul class="trait-list">${d.traits.map(t=>`<li>${t}</li>`).join('')}</ul>
+    </div>
+    <div class="modal-sec">
+      <div class="stag">Last Season</div>
+      ${d.lastYear ? `<div class="lastyear">${d.lastYear}</div>` : `<div class="lastyear rookie">루키 · 이번 시즌 데뷔 (작년 기록 없음)</div>`}
     </div>`;
   overlay.classList.add('open');
 }
